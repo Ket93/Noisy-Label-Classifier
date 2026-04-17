@@ -9,7 +9,7 @@ app = Flask(__name__)
 # --- Configuration ---
 BASE_DIR      = Path(__file__).parent.parent
 IMAGE_DIR     = str(BASE_DIR / 'data' / 'flowers')
-ANNOTATIONS   = 'manual_annotations.csv'
+ANNOTATIONS   = str(Path(__file__).parent.parent / 'manual_annotations.csv')
 CLASSES       = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
 TIME_LIMIT    = 3
 CAP_PER_CLASS = 100
