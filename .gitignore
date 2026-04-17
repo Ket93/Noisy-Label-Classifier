@@ -1,5 +1,4 @@
 # .gitignore
 mylibs/data/
 *.zip
-manual_annotations.csv
 results/
