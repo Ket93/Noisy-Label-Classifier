@@ -14,8 +14,8 @@ from torchvision import transforms
 # --------------------------------------------------------------------------- #
 # Config
 # --------------------------------------------------------------------------- #
-BASE_DIR   = Path(__file__).parent
-IMAGE_DIR  = BASE_DIR / 'mylibs' / 'data' / 'flowers'
+BASE_DIR   = Path(__file__).parent   # mylibs/
+IMAGE_DIR  = BASE_DIR / 'data' / 'flowers'
 CLASSES    = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
 BATCH_SIZE = 64
 VAL_FRAC   = 0.15
@@ -69,6 +69,11 @@ def extract_dino_features(batch_size: int = BATCH_SIZE):
     ])
 
     dataset = FlowersRawDataset(IMAGE_DIR, CLASSES, transform=transform)
+    if len(dataset) == 0:
+        raise FileNotFoundError(
+            f"No images found under {IMAGE_DIR.resolve()}. "
+            f"Expected subfolders {CLASSES} each containing *.jpg files."
+        )
     loader  = DataLoader(dataset, batch_size=batch_size, shuffle=False,
                          num_workers=0, pin_memory=(device.type == 'cuda'))
 
