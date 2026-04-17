@@ -8,7 +8,7 @@ FLOWERS_FLIP_PAIRS = {
     0: 3,   # daisy     → sunflower 
     3: 0,   # sunflower → daisy     
     1: 0,   # dandelion → daisy     
-    0: 1,   # daisy → dandelion     
+    0: 1,   # daisy     → dandelion     
     1: 3,   # dandelion → sunflower
     3: 1,   # sunflower → dandelion 
 }
