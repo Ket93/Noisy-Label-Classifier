@@ -3,9 +3,14 @@ import numpy as np
 # Flowers flip pairs — only one direction per pair to simulate annotator confusion.
 # Visually similar classes: rose→tulip, daisy→sunflower, dandelion→daisy.
 FLOWERS_FLIP_PAIRS = {
-    2: 4,   # rose      → tulip     (both red/pink, similar shape)
-    0: 3,   # daisy     → sunflower (yellow center, similar structure)
-    1: 0,   # dandelion → daisy     (white/yellow, small round head)
+    1: 2,   # rose      → tulip     
+    2: 1,   # tulip     → rose   
+    0: 3,   # daisy     → sunflower 
+    3: 0,   # sunflower → daisy     
+    1: 0,   # dandelion → daisy     
+    0: 1,   # daisy → dandelion     
+    1: 3,   # dandelion → sunflower
+    3: 1,   # sunflower → dandelion 
 }
 
 
