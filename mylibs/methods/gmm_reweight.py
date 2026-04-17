@@ -24,9 +24,12 @@ class GMMReweight(BaseMethod):
     """Train with CE, then reweight samples by GMM clean-posterior."""
     name = 'GMMReweight'
 
-    def __init__(self, warmup_epochs=30, total_epochs=EPOCHS,
+    def __init__(self, warmup_epochs=30, total_epochs=None,
+                 epochs=None,
                  num_classes=NUM_CLASSES, batch_size=BATCH_SIZE, lr=LR,
                  val_features=None, val_labels=None):
+        if total_epochs is None:
+            total_epochs = epochs if epochs is not None else EPOCHS
         self.warmup_epochs  = warmup_epochs
         self.total_epochs   = total_epochs
         self.num_classes    = num_classes

@@ -32,9 +32,12 @@ class ConfidentLearning(BaseMethod):
     name = 'ConfidentLearning'
 
     def __init__(self, n_folds=5, num_classes=NUM_CLASSES,
-                 warmup_epochs=50, total_epochs=EPOCHS,
+                 warmup_epochs=50, total_epochs=None,
+                 epochs=None,
                  batch_size=BATCH_SIZE, lr=LR,
                  val_features=None, val_labels=None):
+        if total_epochs is None:
+            total_epochs = epochs if epochs is not None else EPOCHS
         self.n_folds       = n_folds
         self.num_classes   = num_classes
         self.warmup_epochs = warmup_epochs
