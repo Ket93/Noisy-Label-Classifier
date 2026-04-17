@@ -20,7 +20,7 @@ AUX_FILE    = ROOT / 'results' / 'synthetic_aux.json'
 OUTPUT_FILE = ROOT / 'results' / 'fig6_learning_curves.png'
 
 METHOD_ORDER = ['BaselineCE', 'LabelSmoothing', 'SCE', 'GCE',
-                'SmallLoss', 'GMMReweight', 'ConfidentLearning', 'Curriculum']
+                'GMMReweight', 'ConfidentLearning']
 
 
 def plot():

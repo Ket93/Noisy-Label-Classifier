@@ -28,7 +28,7 @@ import numpy as np
 from dataset import load_data, CLASSES
 from noise.factory  import apply_noise
 from methods import (BaselineCE, LabelSmoothing, SCE, GCE,
-                     SmallLoss, GMMReweight, ConfidentLearning, Curriculum)
+                     GMMReweight, ConfidentLearning)
 
 # --------------------------------------------------------------------------- #
 # Config
@@ -59,10 +59,8 @@ def make_methods(val_features, val_labels):
         LabelSmoothing(**kw),
         SCE(**kw),
         GCE(**kw),
-        SmallLoss(**kw),
         GMMReweight(warmup_epochs=30, total_epochs=EPOCHS, **kw),
         ConfidentLearning(warmup_epochs=EPOCHS // 2, total_epochs=EPOCHS, **kw),
-        Curriculum(**kw),
     ]
 
 

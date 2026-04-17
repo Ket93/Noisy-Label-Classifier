@@ -25,7 +25,7 @@ NOISE_TYPES  = ['uniform', 'asymmetric', 'instance']
 NOISE_LABELS = ['Uniform', 'Asymmetric', 'Instance-Dependent']
 NOISE_RATES  = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
 METHOD_ORDER = ['BaselineCE', 'LabelSmoothing', 'SCE', 'GCE',
-                'SmallLoss', 'GMMReweight', 'ConfidentLearning', 'Curriculum']
+                'GMMReweight', 'ConfidentLearning']
 
 
 def plot():

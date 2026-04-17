@@ -21,7 +21,7 @@ RESULTS_FILE = ROOT / 'results' / 'real_results.json'
 OUTPUT_FILE  = ROOT / 'results' / 'fig7_real_data_bar.png'
 
 METHOD_ORDER = ['BaselineCE', 'LabelSmoothing', 'SCE', 'GCE',
-                'SmallLoss', 'GMMReweight', 'ConfidentLearning', 'Curriculum']
+                'GMMReweight', 'ConfidentLearning']
 
 LABEL_SET_DISPLAY = {
     'clean':         'Clean Labels',

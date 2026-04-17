@@ -32,7 +32,7 @@ import numpy as np
 from dataset import load_data, CLASSES
 from noise.factory  import apply_noise
 from methods import (BaselineCE, LabelSmoothing, SCE, GCE,
-                     SmallLoss, GMMReweight, ConfidentLearning, Curriculum)
+                     GMMReweight, ConfidentLearning)
 
 RESULTS_DIR       = ROOT / 'results'
 ANNOTATIONS_CSV   = ROOT / 'manual_annotations.csv'
@@ -48,10 +48,8 @@ def make_methods(val_features, val_labels):
         LabelSmoothing(**kw),
         SCE(**kw),
         GCE(**kw),
-        SmallLoss(**kw),
         GMMReweight(warmup_epochs=30, total_epochs=EPOCHS, **kw),
         ConfidentLearning(warmup_epochs=EPOCHS // 2, total_epochs=EPOCHS, **kw),
-        Curriculum(**kw),
     ]
 
 
@@ -99,7 +97,7 @@ def run():
     real_results = {ls: {} for ls in label_sets}
 
     t0 = time.time()
-    total = len(label_sets) * 8
+    total = len(label_sets) * 6
     count = 0
 
     for ls_name, noisy_labels in label_sets.items():
