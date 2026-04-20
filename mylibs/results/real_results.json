@@ -1,0 +1,55 @@
+{
+  "results": {
+    "clean": {
+      "BaselineCE": 0.9099378881987578,
+      "LabelSmoothing": 0.8555900621118012,
+      "SCE": 0.9145962732919255,
+      "GCE": 0.9192546583850931,
+      "GMMReweight": 0.8990683229813664,
+      "ConfidentLearning": 0.9161490683229814
+    },
+    "human": {
+      "BaselineCE": 0.8757763975155279,
+      "LabelSmoothing": 0.8711180124223602,
+      "SCE": 0.9161490683229814,
+      "GCE": 0.9161490683229814,
+      "GMMReweight": 0.8975155279503105,
+      "ConfidentLearning": 0.9099378881987578
+    },
+    "uniform_30": {
+      "BaselineCE": 0.6909937888198758,
+      "LabelSmoothing": 0.6661490683229814,
+      "SCE": 0.8167701863354038,
+      "GCE": 0.9021739130434783,
+      "GMMReweight": 0.8369565217391305,
+      "ConfidentLearning": 0.782608695652174
+    },
+    "asymmetric_30": {
+      "BaselineCE": 0.6335403726708074,
+      "LabelSmoothing": 0.6925465838509317,
+      "SCE": 0.7763975155279503,
+      "GCE": 0.8773291925465838,
+      "GMMReweight": 0.6149068322981367,
+      "ConfidentLearning": 0.7515527950310559
+    }
+  },
+  "noise_rates": {
+    "clean": 0.0,
+    "human": 0.016335420637081405,
+    "uniform_30": 0.30274979580724204,
+    "asymmetric_30": 0.232507487067792
+  },
+  "classes": [
+    "daisy",
+    "dandelion",
+    "rose",
+    "sunflower",
+    "tulip"
+  ],
+  "label_sets": [
+    "clean",
+    "human",
+    "uniform_30",
+    "asymmetric_30"
+  ]
+}

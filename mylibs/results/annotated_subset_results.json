@@ -1,0 +1,13 @@
+{
+  "results": {
+    "BaselineCE": 0.8043478260869565,
+    "LabelSmoothing": 0.7127329192546584,
+    "SCE": 0.8074534161490683,
+    "GCE": 0.8416149068322981,
+    "GMMReweight": 0.812111801242236,
+    "ConfidentLearning": 0.8493788819875776
+  },
+  "n_samples": 433,
+  "noise_rate": 0.13856812933025403,
+  "n_errors": 60
+}
