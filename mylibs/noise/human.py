@@ -96,8 +96,6 @@ def human_noise(
 
     total      = len(train_idx)
     noise_rate = (noisy != labels[train_idx]).mean()
-    print(f"[human_noise] Applied {n_swaps}/{total} annotations "
-          f"(effective noise rate: {noise_rate:.3f})")
 
     return noisy
 
