@@ -7,8 +7,8 @@ from collections import Counter
 app = Flask(__name__)
 
 # --- Configuration ---
-BASE_DIR      = Path(__file__).parent.parent
-IMAGE_DIR     = str(BASE_DIR / 'data' / 'flowers')
+BASE_DIR      = Path(__file__).parent.parent          # mylibs/
+IMAGE_DIR     = str(BASE_DIR.parent / 'images')       # Noisy-Label-Classifier/images/
 ANNOTATIONS   = str(Path(__file__).parent.parent / 'manual_annotations.csv')
 CLASSES       = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
 TIME_LIMIT    = 3

@@ -72,10 +72,10 @@ def human_noise(
 
     # Determine image_dir so we can compute relative paths
     if image_dir is None:
-        # image_paths[0] looks like ".../mylibs/data/flowers/rose/img.jpg"
-        # We want the parent of the class folders, i.e. the "flowers" dir.
+        # image_paths[0] looks like ".../Noisy-Label-Classifier/images/rose/img.jpg"
+        # We want the parent of the class folders, i.e. the "images/" dir.
         sample_path = Path(str(image_paths[train_idx[0]]))
-        # Go up two levels: class_folder -> flowers -> data -> mylibs -> project
+        # Go up one level from the class folder: rose/ -> images/
         image_dir = str(sample_path.parent.parent)
 
     image_dir = Path(image_dir)

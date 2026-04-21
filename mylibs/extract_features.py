@@ -14,8 +14,8 @@ from torchvision import transforms
 # --------------------------------------------------------------------------- #
 # Config
 # --------------------------------------------------------------------------- #
-BASE_DIR   = Path(__file__).parent   # mylibs/
-IMAGE_DIR  = BASE_DIR / 'data' / 'flowers'
+BASE_DIR   = Path(__file__).parent          # mylibs/
+IMAGE_DIR  = BASE_DIR.parent / 'images'     # Noisy-Label-Classifier/images/
 CLASSES    = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
 BATCH_SIZE = 64
 VAL_FRAC   = 0.15
