@@ -1,26 +1,7 @@
-"""
-Phase 4A — Synthetic noise sweep.
-
-Runs every combination of:
-  noise_type  × noise_rate × seed × method
-
-Saves results to results/synthetic_results.json.
-Also collects auxiliary data needed by visualisations:
-  - per-sample losses at convergence (for GMM histogram, Figure 2)
-  - CL count matrix at 30% uniform noise (for transition matrix, Figure 3)
-  - CL flagged image indices at 30% uniform noise (for Figure 4)
-  - CL noise-rate estimates across all conditions (for calibration, Figure 5)
-  - per-epoch val accuracies at 40% uniform noise (for learning curves, Figure 6)
-
-Usage:
-    cd Noisy-Label-Classifier
-    python -m experiments.synthetic_sweep
-"""
-
 import sys, json, time
 from pathlib import Path
 
-ROOT = Path(__file__).parent.parent   # mylibs/
+ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
 import numpy as np
@@ -30,16 +11,14 @@ from noise.factory  import apply_noise
 from methods import (BaselineCE, LabelSmoothing, SCE, GCE,
                      GMMReweight, ConfidentLearning)
 
-# --------------------------------------------------------------------------- #
-# Config
-# --------------------------------------------------------------------------- #
+# config
 NOISE_TYPES  = ['uniform', 'asymmetric', 'instance']
 NOISE_RATES  = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
 N_SEEDS      = 3
 EPOCHS       = 100
 BATCH_SIZE   = 256
 
-# Conditions for auxiliary data collection
+# conditions for auxiliary data collection
 AUX_NOISE_TYPE_HIST  = 'uniform'
 AUX_NOISE_RATE_CL    = 0.3
 AUX_NOISE_RATE_CURVE = 0.4
@@ -47,10 +26,7 @@ AUX_NOISE_RATE_CURVE = 0.4
 RESULTS_DIR = ROOT / 'results'
 RESULTS_DIR.mkdir(exist_ok=True)
 
-
-# --------------------------------------------------------------------------- #
-# Helpers
-# --------------------------------------------------------------------------- #
+# helpers
 def make_methods(val_features, val_labels):
     """Return a fresh list of method instances for one experiment run."""
     kw = dict(val_features=val_features, val_labels=val_labels, epochs=EPOCHS)
@@ -63,37 +39,32 @@ def make_methods(val_features, val_labels):
         ConfidentLearning(warmup_epochs=EPOCHS // 2, total_epochs=EPOCHS, **kw),
     ]
 
-
 def nested_dict():
     from collections import defaultdict
     return defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
 
-
-# --------------------------------------------------------------------------- #
-# Main sweep
-# --------------------------------------------------------------------------- #
 def run():
     features, labels, image_paths, train_idx, val_idx = load_data(ROOT)
 
     train_features = features[train_idx]
-    train_labels   = labels[train_idx]
-    val_features   = features[val_idx]
-    val_labels     = labels[val_idx]
+    train_labels = labels[train_idx]
+    val_features = features[val_idx]
+    val_labels = labels[val_idx]
 
-    # Store results as plain dicts for JSON serialisation
-    results = {}   # results[noise_type][noise_rate][method_name] = [acc, ...]
+    # store results as plain dicts for JSON serialisation
+    results = {}
     for nt in NOISE_TYPES:
         results[nt] = {}
         for nr in NOISE_RATES:
             results[nt][str(nr)] = {}
 
-    # Auxiliary collections
-    aux_losses        = {}   # (noise_type, noise_rate, method_name) -> list of losses (seed 0 only)
-    aux_cl_matrix     = None  # estimated count matrix at 30% uniform, seed 0
+    # auxiliary collections
+    aux_losses = {} # (noise_type, noise_rate, method_name) -> list of losses (seed 0 only)
+    aux_cl_matrix = None # estimated count matrix at 30% uniform, seed 0
     aux_cl_true_matrix = None
-    aux_cl_flagged    = None  # flagged indices at 30% uniform, seed 0
-    aux_cl_noise_est  = {}   # (noise_type, noise_rate) -> estimated noise rate (seed 0)
-    aux_epoch_curves  = {}   # method_name -> epoch val accs at 40% uniform, seed 0
+    aux_cl_flagged = None # flagged indices at 30% uniform, seed 0
+    aux_cl_noise_est = {} # (noise_type, noise_rate) -> estimated noise rate (seed 0)
+    aux_epoch_curves = {} # method_name -> epoch val accs at 40% uniform, seed 0
 
     total_runs = len(NOISE_TYPES) * len(NOISE_RATES) * N_SEEDS
     run_count  = 0
@@ -103,11 +74,8 @@ def run():
         for noise_rate in NOISE_RATES:
             for seed in range(N_SEEDS):
                 run_count += 1
-                print(f"\n[{run_count}/{total_runs}] "
-                      f"type={noise_type}  rate={noise_rate}  seed={seed}  "
-                      f"({(time.time()-t0)/60:.1f} min elapsed)")
 
-                # Apply noise to training labels only
+                # apply noise to training labels only
                 if noise_type in ('uniform', 'asymmetric'):
                     noisy_train = apply_noise(
                         train_features, train_labels, noise_type, noise_rate, seed=seed)
@@ -130,12 +98,12 @@ def run():
 
                     # ----- Auxiliary data (seed 0 only) -----
                     if seed == 0:
-                        # Per-sample losses for all conditions (GMM histogram)
+                        # per-sample losses for all conditions (GMM histogram)
                         if method.per_sample_losses is not None:
                             key = f"{noise_type}_{noise_rate}_{method.name}"
                             aux_losses[key] = method.per_sample_losses.tolist()
 
-                        # Learning curves at 40% uniform (Figure 6)
+                        # learning curves at 40% uniform (Figure 6)
                         if (noise_type == 'uniform' and noise_rate == AUX_NOISE_RATE_CURVE
                                 and method.epoch_val_accs):
                             aux_epoch_curves[method.name] = method.epoch_val_accs
@@ -147,7 +115,7 @@ def run():
                             aux_cl_matrix  = method.count_matrix.tolist()
                             aux_cl_flagged = method.flagged_indices.tolist()
 
-                            # True count matrix from actual label flips
+                            # true count matrix from actual label flips
                             K = len(CLASSES)
                             true_matrix = np.zeros((K, K), dtype=np.int32)
                             for i in range(len(noisy_train)):
@@ -159,9 +127,7 @@ def run():
                             key = f"{noise_type}_{noise_rate}"
                             aux_cl_noise_est[key] = method.estimated_noise_rate
 
-    # ---------------------------------------------------------------------- #
-    # Save
-    # ---------------------------------------------------------------------- #
+    # store data
     with open(RESULTS_DIR / 'synthetic_results.json', 'w') as f:
         json.dump(results, f, indent=2)
 
