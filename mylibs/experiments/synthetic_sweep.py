@@ -7,9 +7,6 @@ sys.path.insert(0, str(ROOT))
 import numpy as np
 
 from dataset import load_data, CLASSES
-from noise.factory  import apply_noise
-from methods import (BaselineCE, LabelSmoothing, SCE, GCE,
-                     GMMReweight, ConfidentLearning)
 
 # config
 NOISE_TYPES  = ['uniform', 'asymmetric', 'instance']
@@ -26,24 +23,23 @@ AUX_NOISE_RATE_CURVE = 0.4
 RESULTS_DIR = ROOT / 'results'
 RESULTS_DIR.mkdir(exist_ok=True)
 
-# helpers
-def make_methods(val_features, val_labels):
-    """Return a fresh list of method instances for one experiment run."""
-    kw = dict(val_features=val_features, val_labels=val_labels, epochs=EPOCHS)
-    return [
-        BaselineCE(**kw),
-        LabelSmoothing(**kw),
-        SCE(**kw),
-        GCE(**kw),
-        GMMReweight(warmup_epochs=30, total_epochs=EPOCHS, **kw),
-        ConfidentLearning(warmup_epochs=EPOCHS // 2, total_epochs=EPOCHS, **kw),
-    ]
-
 def nested_dict():
     from collections import defaultdict
     return defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
 
-def run():
+def run(apply_noise, BaselineCE, LabelSmoothing, SCE, GCE, GMMReweight, ConfidentLearning):
+    def make_methods(val_features, val_labels):
+        """Return a fresh list of method instances for one experiment run."""
+        kw = dict(val_features=val_features, val_labels=val_labels, epochs=EPOCHS)
+        return [
+            BaselineCE(**kw),
+            LabelSmoothing(**kw),
+            SCE(**kw),
+            GCE(**kw),
+            GMMReweight(warmup_epochs=30, total_epochs=EPOCHS, **kw),
+            ConfidentLearning(warmup_epochs=EPOCHS // 2, total_epochs=EPOCHS, **kw),
+        ]
+
     features, labels, image_paths, train_idx, val_idx = load_data(ROOT)
 
     train_features = features[train_idx]
@@ -74,6 +70,7 @@ def run():
         for noise_rate in NOISE_RATES:
             for seed in range(N_SEEDS):
                 run_count += 1
+                print(f"\n[Run {run_count}/{total_runs}] noise={noise_type}  rate={noise_rate}  seed={seed}")
 
                 # apply noise to training labels only
                 if noise_type in ('uniform', 'asymmetric'):

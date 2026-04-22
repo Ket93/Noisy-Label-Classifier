@@ -1,36 +1,36 @@
 {
   "results": {
     "clean": {
-      "BaselineCE": 0.9099378881987578,
-      "LabelSmoothing": 0.8555900621118012,
-      "SCE": 0.9145962732919255,
-      "GCE": 0.9192546583850931,
-      "GMMReweight": 0.8990683229813664,
-      "ConfidentLearning": 0.9161490683229814
+      "BaselineCE": 0.8990683229813664,
+      "LabelSmoothing": 0.8416149068322981,
+      "SCE": 0.9114906832298136,
+      "GCE": 0.9208074534161491,
+      "GMMReweight": 0.9037267080745341,
+      "ConfidentLearning": 0.906832298136646
     },
     "human": {
-      "BaselineCE": 0.8757763975155279,
-      "LabelSmoothing": 0.8711180124223602,
-      "SCE": 0.9161490683229814,
-      "GCE": 0.9161490683229814,
-      "GMMReweight": 0.8975155279503105,
-      "ConfidentLearning": 0.9099378881987578
+      "BaselineCE": 0.8881987577639752,
+      "LabelSmoothing": 0.8586956521739131,
+      "SCE": 0.9208074534161491,
+      "GCE": 0.9208074534161491,
+      "GMMReweight": 0.8990683229813664,
+      "ConfidentLearning": 0.9192546583850931
     },
     "uniform_30": {
-      "BaselineCE": 0.6909937888198758,
-      "LabelSmoothing": 0.6661490683229814,
-      "SCE": 0.8167701863354038,
-      "GCE": 0.9021739130434783,
-      "GMMReweight": 0.8369565217391305,
-      "ConfidentLearning": 0.782608695652174
+      "BaselineCE": 0.6832298136645962,
+      "LabelSmoothing": 0.6459627329192547,
+      "SCE": 0.7934782608695652,
+      "GCE": 0.8944099378881988,
+      "GMMReweight": 0.7282608695652174,
+      "ConfidentLearning": 0.7981366459627329
     },
     "asymmetric_30": {
-      "BaselineCE": 0.6335403726708074,
-      "LabelSmoothing": 0.6925465838509317,
+      "BaselineCE": 0.6940993788819876,
+      "LabelSmoothing": 0.7484472049689441,
       "SCE": 0.7763975155279503,
-      "GCE": 0.8773291925465838,
-      "GMMReweight": 0.6149068322981367,
-      "ConfidentLearning": 0.7515527950310559
+      "GCE": 0.7251552795031055,
+      "GMMReweight": 0.7577639751552795,
+      "ConfidentLearning": 0.7484472049689441
     }
   },
   "noise_rates": {

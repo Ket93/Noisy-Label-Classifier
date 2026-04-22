@@ -7,9 +7,6 @@ sys.path.insert(0, str(ROOT))
 import numpy as np
 
 from dataset import load_data, CLASSES
-from noise.factory  import apply_noise
-from methods import (BaselineCE, LabelSmoothing, SCE, GCE,
-                     GMMReweight, ConfidentLearning)
 
 RESULTS_DIR = ROOT / 'results'
 ANNOTATIONS_CSV = ROOT / 'manual_annotations.csv'
@@ -18,19 +15,18 @@ BATCH_SIZE = 256
 RESULTS_DIR.mkdir(exist_ok=True)
 
 
-def make_methods(val_features, val_labels):
-    kw = dict(val_features=val_features, val_labels=val_labels, epochs=EPOCHS)
-    return [
-        BaselineCE(**kw),
-        LabelSmoothing(**kw),
-        SCE(**kw),
-        GCE(**kw),
-        GMMReweight(warmup_epochs=30, total_epochs=EPOCHS, **kw),
-        ConfidentLearning(warmup_epochs=EPOCHS // 2, total_epochs=EPOCHS, **kw),
-    ]
+def run(apply_noise, BaselineCE, LabelSmoothing, SCE, GCE, GMMReweight, ConfidentLearning):
+    def make_methods(val_features, val_labels):
+        kw = dict(val_features=val_features, val_labels=val_labels, epochs=EPOCHS)
+        return [
+            BaselineCE(**kw),
+            LabelSmoothing(**kw),
+            SCE(**kw),
+            GCE(**kw),
+            GMMReweight(warmup_epochs=30, total_epochs=EPOCHS, **kw),
+            ConfidentLearning(warmup_epochs=EPOCHS // 2, total_epochs=EPOCHS, **kw),
+        ]
 
-
-def run():
     features, labels, image_paths, train_idx, val_idx = load_data(ROOT)
 
     train_features = features[train_idx]
