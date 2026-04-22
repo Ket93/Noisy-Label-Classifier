@@ -1,12 +1,5 @@
-"""
-Figure 7 — Real Data Bar Chart.
-
-Grouped bar chart: one group per label set (clean / human / uniform_30 / asymmetric_30),
-bars coloured by method.
-
-Reads from: results/real_results.json
-"""
-
+# figure 7
+ 
 import sys, json
 from pathlib import Path
 

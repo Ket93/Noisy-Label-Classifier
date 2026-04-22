@@ -1,12 +1,4 @@
-"""
-Figure 5 — Noise Rate Calibration Scatter.
-
-X axis: true noise rate (fraction of labels that were actually flipped)
-Y axis: estimated noise rate from Confident Learning
-Ideal : diagonal line y=x
-
-Reads from: results/synthetic_aux.json
-"""
+# figure 5
 
 import sys, json
 from pathlib import Path

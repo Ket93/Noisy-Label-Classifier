@@ -29,7 +29,6 @@ def nested_dict():
 
 def run(apply_noise, BaselineCE, LabelSmoothing, SCE, GCE, GMMReweight, ConfidentLearning):
     def make_methods(val_features, val_labels):
-        """Return a fresh list of method instances for one experiment run."""
         kw = dict(val_features=val_features, val_labels=val_labels, epochs=EPOCHS)
         return [
             BaselineCE(**kw),

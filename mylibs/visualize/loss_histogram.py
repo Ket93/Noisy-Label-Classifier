@@ -1,13 +1,4 @@
-"""
-Figure 2 — GMM Loss Histogram.
-
-One subplot per noise rate (uniform noise, BaselineCE losses).
-Bimodal histogram coloured by whether the sample is truly clean or noisy.
-GMM fit overlaid.
-
-Reads from: results/synthetic_aux.json
-Also needs: features.npy, labels.npy, val_indices.npy (to know which samples are noisy)
-"""
+# figure 2
 
 import sys, json
 from pathlib import Path

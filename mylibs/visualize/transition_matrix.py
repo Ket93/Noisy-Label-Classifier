@@ -1,12 +1,4 @@
-"""
-Figure 3 — Transition Matrix Heatmap (2-panel: estimated vs. true).
-
-Side-by-side heatmaps at 30% uniform noise.
-Left : true transition matrix (actual label flips).
-Right: Confident Learning's estimated count matrix.
-
-Reads from: results/synthetic_aux.json
-"""
+# figure 3
 
 import sys, json
 from pathlib import Path
@@ -17,13 +9,13 @@ sys.path.insert(0, str(ROOT))
 import numpy as np
 import matplotlib.pyplot as plt
 
-AUX_FILE    = ROOT / 'results' / 'synthetic_aux.json'
+AUX_FILE = ROOT / 'results' / 'synthetic_aux.json'
 OUTPUT_FILE = ROOT / 'results' / 'fig3_transition_matrix.png'
 
 
 def _plot_matrix(ax, mat, classes, title, vmax=None):
     mat = np.array(mat, dtype=float)
-    im  = ax.imshow(mat, cmap='Blues', vmin=0, vmax=vmax or mat.max())
+    im = ax.imshow(mat, cmap='Blues', vmin=0, vmax=vmax or mat.max())
     ax.set_xticks(range(len(classes)))
     ax.set_yticks(range(len(classes)))
     ax.set_xticklabels(classes, rotation=45, ha='right', fontsize=8)
@@ -45,9 +37,9 @@ def plot():
     with open(AUX_FILE) as f:
         aux = json.load(f)
 
-    classes    = aux.get('classes', [f'C{i}' for i in range(5)])
-    true_mat   = aux.get('cl_true_matrix')
-    est_mat    = aux.get('cl_count_matrix')
+    classes = aux.get('classes', [f'C{i}' for i in range(5)])
+    true_mat = aux.get('cl_true_matrix')
+    est_mat = aux.get('cl_count_matrix')
 
     if true_mat is None or est_mat is None:
         print("Transition matrix data not found in synthetic_aux.json. "

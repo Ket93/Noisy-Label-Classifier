@@ -1,23 +1,3 @@
-"""
-Convenience runner for the full pipeline.
-
-Usage:
-    python run_pipeline.py [--phase PHASE]
-
-Phases:
-    1  extract   — extract DINO features  (run once, needs internet)
-    2  annotate  — start the Flask annotation tool (collect human labels)
-    3  sweep     — run the synthetic noise sweep  (slow, ~hours)
-    4  real       — run the real data experiment
-    5  figures   — generate all 7 figures from saved results
-
-Examples:
-    python run_pipeline.py --phase extract
-    python run_pipeline.py --phase annotate
-    python run_pipeline.py --phase sweep
-    python run_pipeline.py --phase figures
-"""
-
 import argparse, subprocess, sys
 from pathlib import Path
 

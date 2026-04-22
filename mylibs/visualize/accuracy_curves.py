@@ -1,12 +1,4 @@
-"""
-Figure 1 — Accuracy vs. Noise Rate (3 subplots, one per noise type).
-
-X axis : noise rate
-Y axis : validation accuracy
-Lines  : one per method, shaded ± std over seeds
-
-Reads from: results/synthetic_results.json
-"""
+# figure 1
 
 import sys, json
 from pathlib import Path
@@ -21,11 +13,10 @@ import matplotlib.cm as cm
 RESULTS_FILE = ROOT / 'results' / 'synthetic_results.json'
 OUTPUT_FILE  = ROOT / 'results' / 'fig1_accuracy_curves.png'
 
-NOISE_TYPES  = ['uniform', 'asymmetric', 'instance']
+NOISE_TYPES = ['uniform', 'asymmetric', 'instance']
 NOISE_LABELS = ['Uniform', 'Asymmetric', 'Instance-Dependent']
-NOISE_RATES  = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-METHOD_ORDER = ['BaselineCE', 'LabelSmoothing', 'SCE', 'GCE',
-                'GMMReweight', 'ConfidentLearning']
+NOISE_RATES = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
+METHOD_ORDER = ['BaselineCE', 'LabelSmoothing', 'SCE', 'GCE', 'GMMReweight', 'ConfidentLearning']
 
 
 def plot():
@@ -52,7 +43,7 @@ def plot():
                     stds.append(0.0)
 
             means = np.array(means)
-            stds  = np.array(stds)
+            stds = np.array(stds)
             valid = ~np.isnan(means)
 
             ax.plot(np.array(NOISE_RATES)[valid], means[valid],

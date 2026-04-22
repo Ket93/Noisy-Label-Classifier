@@ -1,11 +1,4 @@
-"""
-Figure 4 — Flagged Sample Grid.
-
-Displays images that Confident Learning flagged as likely mislabeled at 30% uniform noise.
-Title of each cell: "Given: X  →  Suggested: Y".
-
-Reads from: results/synthetic_aux.json, features.npy, labels.npy, image_paths.npy
-"""
+# figure 4
 
 import sys, json
 from pathlib import Path

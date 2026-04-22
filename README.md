@@ -7,10 +7,10 @@
    ```kaggle datasets download -d alxmamaev/flowers-recognition```
 
 2. Unzip and place it at:
-   mylibs/data/flowers/
+   images/
    
 3. Structure should look like:
-   mylibs/data/flowers/
+   images/
    ├── daisy/
    ├── dandelion/
    ├── rose/

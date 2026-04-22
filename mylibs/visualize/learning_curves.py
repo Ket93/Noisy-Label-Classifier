@@ -1,11 +1,5 @@
-"""
-Figure 6 — Learning Curves (Val accuracy over epochs, 40% uniform noise).
-
-One line per method, at fixed 40% uniform noise rate.
-
-Reads from: results/synthetic_aux.json
-"""
-
+# figure 6
+ 
 import sys, json
 from pathlib import Path
 
