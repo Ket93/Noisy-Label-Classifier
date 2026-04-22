@@ -1,11 +1,11 @@
 {
   "results": {
-    "BaselineCE": 0.8074534161490683,
-    "LabelSmoothing": 0.6956521739130435,
-    "SCE": 0.7950310559006211,
-    "GCE": 0.843167701863354,
-    "GMMReweight": 0.7950310559006211,
-    "ConfidentLearning": 0.8385093167701864
+    "BaselineCE": 0.812111801242236,
+    "LabelSmoothing": 0.6909937888198758,
+    "SCE": 0.8074534161490683,
+    "GCE": 0.8416149068322981,
+    "GMMReweight": 0.812111801242236,
+    "ConfidentLearning": 0.8338509316770186
   },
   "n_samples": 433,
   "noise_rate": 0.13856812933025403,

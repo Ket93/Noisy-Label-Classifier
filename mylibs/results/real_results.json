@@ -1,36 +1,36 @@
 {
   "results": {
     "clean": {
-      "BaselineCE": 0.8990683229813664,
-      "LabelSmoothing": 0.8416149068322981,
+      "BaselineCE": 0.9083850931677019,
+      "LabelSmoothing": 0.8555900621118012,
       "SCE": 0.9114906832298136,
-      "GCE": 0.9208074534161491,
-      "GMMReweight": 0.9037267080745341,
-      "ConfidentLearning": 0.906832298136646
+      "GCE": 0.9192546583850931,
+      "GMMReweight": 0.9099378881987578,
+      "ConfidentLearning": 0.9192546583850931
     },
     "human": {
-      "BaselineCE": 0.8881987577639752,
-      "LabelSmoothing": 0.8586956521739131,
-      "SCE": 0.9208074534161491,
-      "GCE": 0.9208074534161491,
-      "GMMReweight": 0.8990683229813664,
+      "BaselineCE": 0.8711180124223602,
+      "LabelSmoothing": 0.8711180124223602,
+      "SCE": 0.9270186335403726,
+      "GCE": 0.9161490683229814,
+      "GMMReweight": 0.9114906832298136,
       "ConfidentLearning": 0.9192546583850931
     },
     "uniform_30": {
-      "BaselineCE": 0.6832298136645962,
-      "LabelSmoothing": 0.6459627329192547,
-      "SCE": 0.7934782608695652,
+      "BaselineCE": 0.5869565217391305,
+      "LabelSmoothing": 0.7360248447204969,
+      "SCE": 0.8183229813664596,
       "GCE": 0.8944099378881988,
-      "GMMReweight": 0.7282608695652174,
-      "ConfidentLearning": 0.7981366459627329
+      "GMMReweight": 0.7360248447204969,
+      "ConfidentLearning": 0.8074534161490683
     },
     "asymmetric_30": {
-      "BaselineCE": 0.6940993788819876,
-      "LabelSmoothing": 0.7484472049689441,
-      "SCE": 0.7763975155279503,
-      "GCE": 0.7251552795031055,
-      "GMMReweight": 0.7577639751552795,
-      "ConfidentLearning": 0.7484472049689441
+      "BaselineCE": 0.6242236024844721,
+      "LabelSmoothing": 0.6708074534161491,
+      "SCE": 0.796583850931677,
+      "GCE": 0.8726708074534162,
+      "GMMReweight": 0.7220496894409938,
+      "ConfidentLearning": 0.7422360248447205
     }
   },
   "noise_rates": {

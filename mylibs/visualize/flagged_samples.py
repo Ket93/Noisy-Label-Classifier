@@ -34,15 +34,11 @@ def plot():
     train_features = features[train_idx]
     train_labels   = labels[train_idx]
 
-    # Reconstruct 30% uniform noise (seed=0) to know what labels were given
     noisy_train = apply_noise(train_features, train_labels, 'uniform', 0.3, seed=0)
 
-    # flagged_global are indices into the TRAINING array (from CL's perspective)
     flagged = np.array(flagged_global, dtype=np.int64)
     flagged = flagged[flagged < len(train_idx)]  # safety
 
-    # Build suggested labels: argmax of CL OOF probs
-    # (We'll use noisy label vs true label as "given" vs "suggested")
     show_idx = flagged[:MAX_SHOW]
     n_show   = len(show_idx)
 

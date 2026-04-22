@@ -26,10 +26,6 @@ def plot():
     cl_est    = aux.get('cl_noise_est', {})
     noise_rates_stored = aux.get('noise_rates', NOISE_RATES)
 
-    # For asymmetric noise, the "true" rate differs from the requested rate
-    # (only confusable-pair labels are eligible). We use the requested rate
-    # as a proxy — the scatter spread reveals this discrepancy.
-
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.set_title("Confident Learning — Noise Rate Calibration", fontsize=12)
 
